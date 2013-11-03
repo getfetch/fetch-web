@@ -7,6 +7,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FetchWeb", "FetchWeb\FetchW
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FetchWeb.Tests", "..\..\..\..\users\chris\documents\visual studio 2013\Projects\FetchWeb\FetchWeb.Tests\FetchWeb.Tests.csproj", "{5167DE0E-9C92-4026-9478-897246646770}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{62821741-EFDF-472A-A170-690BD464D15C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{33966C08-AEA9-48F4-919F-37F722DA0309}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{15D9E7E9-D504-477A-A796-0F3010A559DB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{698D8E29-192E-440B-AD67-0D67C4D84902}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{881D1F1C-95F0-4D7D-81B3-511E780D34EB}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "FetchDatabase", "FetchDatabase\FetchDatabase.sqlproj", "{9CCDB229-8ADF-4A5B-9B9C-75B96CB6A568}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,8 +33,24 @@ Global
 		{5167DE0E-9C92-4026-9478-897246646770}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5167DE0E-9C92-4026-9478-897246646770}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5167DE0E-9C92-4026-9478-897246646770}.Release|Any CPU.Build.0 = Release|Any CPU
+		{881D1F1C-95F0-4D7D-81B3-511E780D34EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{881D1F1C-95F0-4D7D-81B3-511E780D34EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{881D1F1C-95F0-4D7D-81B3-511E780D34EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{881D1F1C-95F0-4D7D-81B3-511E780D34EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CCDB229-8ADF-4A5B-9B9C-75B96CB6A568}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CCDB229-8ADF-4A5B-9B9C-75B96CB6A568}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CCDB229-8ADF-4A5B-9B9C-75B96CB6A568}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{9CCDB229-8ADF-4A5B-9B9C-75B96CB6A568}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CCDB229-8ADF-4A5B-9B9C-75B96CB6A568}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CCDB229-8ADF-4A5B-9B9C-75B96CB6A568}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5167DE0E-9C92-4026-9478-897246646770} = {62821741-EFDF-472A-A170-690BD464D15C}
+		{9CCDB229-8ADF-4A5B-9B9C-75B96CB6A568} = {33966C08-AEA9-48F4-919F-37F722DA0309}
+		{24AB4C9B-9B05-4B14-ABB5-09EE7BCB0629} = {15D9E7E9-D504-477A-A796-0F3010A559DB}
+		{881D1F1C-95F0-4D7D-81B3-511E780D34EB} = {698D8E29-192E-440B-AD67-0D67C4D84902}
 	EndGlobalSection
 EndGlobal
