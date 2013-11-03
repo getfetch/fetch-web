@@ -29,3 +29,25 @@
         <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
     </div>
 </div>
+
+<div id="api-test">
+
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Send an AJAX request
+            var apiUrl = "/api/dogs/browse/15234"
+            $.getJSON(apiUrl)
+                .done(function (data) {
+                    // On success, 'data' contains a list of products.
+                    //$.each(data, function (key, item) {
+                        // Add a list item for the product.
+                        $('<li>', { text: formatItem(data) }).appendTo($('#api-test'));
+                    //});
+                });
+        });
+    </script>
+}
