@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="05ee368e07af44f99a038619426f4845" Name="Diagram1">
+        <EntityTypeShape EntityType="FetchEntityModel.C__MigrationHistory" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FetchEntityModel.C__RefactorLog" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FetchEntityModel.Address" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FetchEntityModel.AspNetRole" Width="1.5" PointX="7.75" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FetchEntityModel.AspNetUserClaim" Width="1.5" PointX="12.25" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="FetchEntityModel.AspNetUserLogin" Width="1.5" PointX="12.25" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FetchEntityModel.AspNetUser" Width="1.5" PointX="10" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="FetchEntityModel.Organization" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FetchEntityModel.OrganizationUser" Width="1.5" PointX="5.25" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FetchEntityModel.Pet" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FetchEntityModel.User" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FetchEntityModel.UserPetFavorite" Width="1.5" PointX="7.5" PointY="4.125" IsExpanded="true" />
+        <AssociationConnector Association="FetchEntityModel.FK_Organization_Address" ManuallyRouted="false" />
+        <AssociationConnector Association="FetchEntityModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="FetchEntityModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="FetchEntityModel.FK_Organization_MainContact" ManuallyRouted="false" />
+        <AssociationConnector Association="FetchEntityModel.FK_OrganizationUser_Organization" ManuallyRouted="false" />
+        <AssociationConnector Association="FetchEntityModel.FK_Pet_Organization" ManuallyRouted="false" />
+        <AssociationConnector Association="FetchEntityModel.FK_OrganizationUser_User" ManuallyRouted="false" />
+        <AssociationConnector Association="FetchEntityModel.FK_UserPetFavorites_Pet" ManuallyRouted="false" />
+        <AssociationConnector Association="FetchEntityModel.FK_UserPetFavorites_User" ManuallyRouted="false" />
+        <AssociationConnector Association="FetchEntityModel.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

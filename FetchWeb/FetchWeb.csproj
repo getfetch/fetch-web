@@ -248,9 +248,9 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Domain\Domain.csproj">
-      <Project>{881d1f1c-95f0-4d7d-81b3-511e780d34eb}</Project>
-      <Name>Domain</Name>
+    <ProjectReference Include="..\FetchDomain\FetchDomain.csproj">
+      <Project>{d107de5d-b314-4fee-b38f-3bdb5dfd5ed8}</Project>
+      <Name>FetchDomain</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
