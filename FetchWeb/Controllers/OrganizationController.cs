@@ -60,10 +60,17 @@ namespace FetchWeb.Controllers
         // GET: /Organization/Edit/5
         public ActionResult Edit(int id)
         {
-            IOrganization org = new Organization();
+            try
+            {
+                IOrganization org = new Organization();
 
-            org.Details(id);
-            return View("Edit", org);
+                org.Details(id);
+                return View("Edit", org);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Details");
+            }
         }
 
         //
@@ -79,7 +86,7 @@ namespace FetchWeb.Controllers
             }
             catch
             {
-                return View();
+                return View("Edit", org);
             }
         }
 
