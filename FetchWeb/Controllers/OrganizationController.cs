@@ -21,9 +21,16 @@ namespace FetchWeb.Controllers
         // GET: /Organization/Details/5
         public ActionResult Details(int id)
         {
-            IOrganization org = new Organization();
-            org.Details(id);
-            return View("Details", org);
+            try
+            {
+                IOrganization org = DependencyResolver.Current.GetService<IOrganization>();
+                org.Details(id);
+                return View("Details", org);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         //
@@ -54,6 +61,7 @@ namespace FetchWeb.Controllers
         public ActionResult Edit(int id)
         {
             IOrganization org = new Organization();
+
             org.Details(id);
             return View("Edit", org);
         }

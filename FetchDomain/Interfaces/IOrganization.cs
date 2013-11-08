@@ -12,7 +12,7 @@ namespace FetchDomain.Interfaces
         String Address { get; set; }
         String Phone { get; set; }
         String EMail { get; set; }
-        String MainContact { get; set; }
+        IUser MainContact { get; set; }
         List<IDog> Dogs { get; set; }
 
         void Details(int id);
