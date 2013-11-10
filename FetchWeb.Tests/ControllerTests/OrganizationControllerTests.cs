@@ -83,23 +83,23 @@ namespace FetchWeb.Tests
             Assert.AreEqual("Details", result.ViewName);
         }
 
-        [TestMethod]
-        public void EditPostError()
-        {
-            IOrganizationEditModel model = new IOrganizationEditModel() { };
-            ViewResult result = (ViewResult)controller.Edit(model);
-            Assert.AreEqual("Edit", result.ViewName);
-        }
+        //[TestMethod]
+        //public void EditPostError()
+        //{
+        //    IOrganizationEditModel model = new IOrganizationEditModel() { };
+        //    ViewResult result = (ViewResult)controller.Edit(model);
+        //    Assert.AreEqual("Edit", result.ViewName);
+        //}
 
-        [TestMethod]
-        public void EditPost()
-        {
-            IOrganizationEditModel model = new IOrganizationEditModel() { };
-            RedirectToRouteResult result = (RedirectToRouteResult)controller.Edit(model);
-            Assert.IsTrue(result.RouteValues.ContainsKey("action"));
-            Assert.IsTrue(result.RouteValues.ContainsKey("controller"));
-            Assert.AreEqual("Edit", result.RouteValues["action"].ToString());
-            Assert.AreEqual("Organization", result.RouteValues["action"].ToString());
-        }
+        //[TestMethod]
+        //public void EditPost()
+        //{
+        //    IOrganizationEditModel model = new IOrganizationEditModel() { };
+        //    RedirectToRouteResult result = (RedirectToRouteResult)controller.Edit(model);
+        //    Assert.IsTrue(result.RouteValues.ContainsKey("action"));
+        //    Assert.IsTrue(result.RouteValues.ContainsKey("controller"));
+        //    Assert.AreEqual("Edit", result.RouteValues["action"].ToString());
+        //    Assert.AreEqual("Organization", result.RouteValues["action"].ToString());
+        //}
     }
 }

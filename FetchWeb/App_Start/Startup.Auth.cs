@@ -24,15 +24,15 @@ namespace FetchWeb
             //    clientId: "",
             //    clientSecret: "");
 
-            //app.UseTwitterAuthentication(
-            //   consumerKey: "",
-            //   consumerSecret: "");
+            app.UseTwitterAuthentication(
+               consumerKey: "orhvtjxkZ3Z1yqDxvFAshg",
+               consumerSecret: "VclpbolwsAREQT5Rv1rkiJKe0wUM2L3Iz0LsCRIb8");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "568318029901725",
+               appSecret: "2b5d3c4325938934d0de07f4217efba8");
 
-            //app.UseGoogleAuthentication();
+            app.UseGoogleAuthentication();
         }
     }
 }
