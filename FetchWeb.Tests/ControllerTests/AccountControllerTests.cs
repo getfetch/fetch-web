@@ -7,6 +7,7 @@ namespace FetchWeb.Tests
     public class AccountControllerTests
     {
         [TestInitialize]
+        [TestCategory("MyTest")]
         public void InitiateTest()
         {
             TestDependencyResolver.RegisterDependencies();

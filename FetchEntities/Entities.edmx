@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="FetchEntityModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="FetchEntityModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -31,6 +31,8 @@
           <Property Name="City" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="State" Type="char" MaxLength="2" Nullable="false" />
           <Property Name="Zip" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Longitude" Type="decimal" Precision="10" Scale="6" />
+          <Property Name="Latitude" Type="decimal" Precision="10" Scale="6" />
         </EntityType>
         <EntityType Name="AspNetRoles">
           <Key>
@@ -88,14 +90,6 @@
           <Property Name="Phone" Type="varchar" MaxLength="25" />
           <Property Name="Email" Type="varchar" MaxLength="255" />
         </EntityType>
-        <EntityType Name="OrganizationUser">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="OrganizationId" Type="int" Nullable="false" />
-          <Property Name="UserId" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="Pet">
           <Key>
             <PropertyRef Name="Id" />
@@ -107,6 +101,17 @@
           <Property Name="Breed" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Description" Type="text" Nullable="false" />
           <Property Name="AtRisk" Type="bit" Nullable="false" />
+          <Property Name="Age" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Sex" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Size" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PetFinderOrganization">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrganizationId" Type="int" Nullable="false" />
+          <Property Name="PetFInderId" Type="varchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -207,30 +212,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_OrganizationUser_Organization">
-          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
-          <End Role="OrganizationUser" Type="Self.OrganizationUser" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Organization">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="OrganizationUser">
-              <PropertyRef Name="OrganizationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_OrganizationUser_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="OrganizationUser" Type="Self.OrganizationUser" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="OrganizationUser">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Pet_Organization">
           <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
           <End Role="Pet" Type="Self.Pet" Multiplicity="*" />
@@ -239,6 +220,18 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Pet">
+              <PropertyRef Name="OrganizationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PetFinderOrganization_Organization">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="PetFinderOrganization" Type="Self.PetFinderOrganization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PetFinderOrganization">
               <PropertyRef Name="OrganizationId" />
             </Dependent>
           </ReferentialConstraint>
@@ -277,8 +270,8 @@
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Organization" EntityType="Self.Organization" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="OrganizationUser" EntityType="Self.OrganizationUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pet" EntityType="Self.Pet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PetFinderOrganization" EntityType="Self.PetFinderOrganization" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserPetFavorites" EntityType="Self.UserPetFavorites" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
@@ -305,17 +298,13 @@
             <End Role="User" EntitySet="User" />
             <End Role="Organization" EntitySet="Organization" />
           </AssociationSet>
-          <AssociationSet Name="FK_OrganizationUser_Organization" Association="Self.FK_OrganizationUser_Organization">
-            <End Role="Organization" EntitySet="Organization" />
-            <End Role="OrganizationUser" EntitySet="OrganizationUser" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OrganizationUser_User" Association="Self.FK_OrganizationUser_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="OrganizationUser" EntitySet="OrganizationUser" />
-          </AssociationSet>
           <AssociationSet Name="FK_Pet_Organization" Association="Self.FK_Pet_Organization">
             <End Role="Organization" EntitySet="Organization" />
             <End Role="Pet" EntitySet="Pet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PetFinderOrganization_Organization" Association="Self.FK_PetFinderOrganization_Organization">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="PetFinderOrganization" EntitySet="PetFinderOrganization" />
           </AssociationSet>
           <AssociationSet Name="FK_UserPetFavorites_Pet" Association="Self.FK_UserPetFavorites_Pet">
             <End Role="Pet" EntitySet="Pet" />
@@ -326,8 +315,7 @@
             <End Role="UserPetFavorites" EntitySet="UserPetFavorites" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="FetchEntityModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -358,6 +346,8 @@
           <Property Name="State" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="Zip" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Organizations" Relationship="Self.FK_Organization_Address" FromRole="Address" ToRole="Organization" />
+          <Property Name="Longitude" Type="Decimal" Precision="10" Scale="6" />
+          <Property Name="Latitude" Type="Decimal" Precision="10" Scale="6" />
         </EntityType>
         <EntityType Name="AspNetRole">
           <Key>
@@ -414,18 +404,8 @@
           <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Address" Relationship="Self.FK_Organization_Address" FromRole="Organization" ToRole="Address" />
           <NavigationProperty Name="User" Relationship="Self.FK_Organization_MainContact" FromRole="Organization" ToRole="User" />
-          <NavigationProperty Name="OrganizationUsers" Relationship="Self.FK_OrganizationUser_Organization" FromRole="Organization" ToRole="OrganizationUser" />
           <NavigationProperty Name="Pets" Relationship="Self.FK_Pet_Organization" FromRole="Organization" ToRole="Pet" />
-        </EntityType>
-        <EntityType Name="OrganizationUser">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="OrganizationId" Type="Int32" Nullable="false" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Organization" Relationship="Self.FK_OrganizationUser_Organization" FromRole="OrganizationUser" ToRole="Organization" />
-          <NavigationProperty Name="User" Relationship="Self.FK_OrganizationUser_User" FromRole="OrganizationUser" ToRole="User" />
+          <NavigationProperty Name="PetFinderOrganizations" Relationship="FetchEntityModel.FK_PetFinderOrganization_Organization" FromRole="Organization" ToRole="PetFinderOrganization" />
         </EntityType>
         <EntityType Name="Pet">
           <Key>
@@ -440,6 +420,9 @@
           <Property Name="AtRisk" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Organization" Relationship="Self.FK_Pet_Organization" FromRole="Pet" ToRole="Organization" />
           <NavigationProperty Name="UserPetFavorites" Relationship="Self.FK_UserPetFavorites_Pet" FromRole="Pet" ToRole="UserPetFavorites" />
+          <Property Name="Age" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Sex" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Size" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -451,7 +434,6 @@
           <Property Name="Phone" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Organizations" Relationship="Self.FK_Organization_MainContact" FromRole="User" ToRole="Organization" />
-          <NavigationProperty Name="OrganizationUsers" Relationship="Self.FK_OrganizationUser_User" FromRole="User" ToRole="OrganizationUser" />
           <NavigationProperty Name="UserPetFavorites" Relationship="Self.FK_UserPetFavorites_User" FromRole="User" ToRole="UserPetFavorites" />
         </EntityType>
         <EntityType Name="UserPetFavorite">
@@ -517,18 +499,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_OrganizationUser_Organization">
-          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
-          <End Role="OrganizationUser" Type="Self.OrganizationUser" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Organization">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="OrganizationUser">
-              <PropertyRef Name="OrganizationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Pet_Organization">
           <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
           <End Role="Pet" Type="Self.Pet" Multiplicity="*" />
@@ -538,18 +508,6 @@
             </Principal>
             <Dependent Role="Pet">
               <PropertyRef Name="OrganizationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_OrganizationUser_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="OrganizationUser" Type="Self.OrganizationUser" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="OrganizationUser">
-              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -590,7 +548,6 @@
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
           <EntitySet Name="Organizations" EntityType="Self.Organization" />
-          <EntitySet Name="OrganizationUsers" EntityType="Self.OrganizationUser" />
           <EntitySet Name="Pets" EntityType="Self.Pet" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="UserPetFavorites" EntityType="Self.UserPetFavorite" />
@@ -610,17 +567,9 @@
             <End Role="User" EntitySet="Users" />
             <End Role="Organization" EntitySet="Organizations" />
           </AssociationSet>
-          <AssociationSet Name="FK_OrganizationUser_Organization" Association="Self.FK_OrganizationUser_Organization">
-            <End Role="Organization" EntitySet="Organizations" />
-            <End Role="OrganizationUser" EntitySet="OrganizationUsers" />
-          </AssociationSet>
           <AssociationSet Name="FK_Pet_Organization" Association="Self.FK_Pet_Organization">
             <End Role="Organization" EntitySet="Organizations" />
             <End Role="Pet" EntitySet="Pets" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OrganizationUser_User" Association="Self.FK_OrganizationUser_User">
-            <End Role="User" EntitySet="Users" />
-            <End Role="OrganizationUser" EntitySet="OrganizationUsers" />
           </AssociationSet>
           <AssociationSet Name="FK_UserPetFavorites_Pet" Association="Self.FK_UserPetFavorites_Pet">
             <End Role="Pet" EntitySet="Pets" />
@@ -634,7 +583,33 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <EntitySet Name="PetFinderOrganizations" EntityType="FetchEntityModel.PetFinderOrganization" />
+          <AssociationSet Name="FK_PetFinderOrganization_Organization" Association="FetchEntityModel.FK_PetFinderOrganization_Organization">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="PetFinderOrganization" EntitySet="PetFinderOrganizations" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="PetFinderOrganization">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="OrganizationId" Type="Int32" Nullable="false" />
+          <Property Name="PetFInderId" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Organization" Relationship="FetchEntityModel.FK_PetFinderOrganization_Organization" FromRole="PetFinderOrganization" ToRole="Organization" />
+        </EntityType>
+        <Association Name="FK_PetFinderOrganization_Organization">
+          <End Type="FetchEntityModel.Organization" Role="Organization" Multiplicity="1" />
+          <End Type="FetchEntityModel.PetFinderOrganization" Role="PetFinderOrganization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PetFinderOrganization">
+              <PropertyRef Name="OrganizationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -661,6 +636,8 @@
           <EntitySetMapping Name="Addresses">
             <EntityTypeMapping TypeName="FetchEntityModel.Address">
               <MappingFragment StoreEntitySet="Address">
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Line1" ColumnName="Line1" />
                 <ScalarProperty Name="Line2" ColumnName="Line2" />
@@ -721,18 +698,12 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="OrganizationUsers">
-            <EntityTypeMapping TypeName="FetchEntityModel.OrganizationUser">
-              <MappingFragment StoreEntitySet="OrganizationUser">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Pets">
             <EntityTypeMapping TypeName="FetchEntityModel.Pet">
               <MappingFragment StoreEntitySet="Pet">
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -772,6 +743,15 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="PetFinderOrganizations">
+            <EntityTypeMapping TypeName="FetchEntityModel.PetFinderOrganization">
+              <MappingFragment StoreEntitySet="PetFinderOrganization">
+                <ScalarProperty Name="PetFInderId" ColumnName="PetFInderId" />
+                <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

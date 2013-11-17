@@ -13,7 +13,6 @@
         <EntityTypeShape EntityType="FetchEntityModel.AspNetUserLogin" Width="1.5" PointX="12.25" PointY="10.75" IsExpanded="true" />
         <EntityTypeShape EntityType="FetchEntityModel.AspNetUser" Width="1.5" PointX="10" PointY="9" IsExpanded="true" />
         <EntityTypeShape EntityType="FetchEntityModel.Organization" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="FetchEntityModel.OrganizationUser" Width="1.5" PointX="5.25" PointY="1.875" IsExpanded="true" />
         <EntityTypeShape EntityType="FetchEntityModel.Pet" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="FetchEntityModel.User" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
         <EntityTypeShape EntityType="FetchEntityModel.UserPetFavorite" Width="1.5" PointX="7.5" PointY="4.125" IsExpanded="true" />
@@ -21,12 +20,12 @@
         <AssociationConnector Association="FetchEntityModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" ManuallyRouted="false" />
         <AssociationConnector Association="FetchEntityModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="FetchEntityModel.FK_Organization_MainContact" ManuallyRouted="false" />
-        <AssociationConnector Association="FetchEntityModel.FK_OrganizationUser_Organization" ManuallyRouted="false" />
         <AssociationConnector Association="FetchEntityModel.FK_Pet_Organization" ManuallyRouted="false" />
-        <AssociationConnector Association="FetchEntityModel.FK_OrganizationUser_User" ManuallyRouted="false" />
         <AssociationConnector Association="FetchEntityModel.FK_UserPetFavorites_Pet" ManuallyRouted="false" />
         <AssociationConnector Association="FetchEntityModel.FK_UserPetFavorites_User" ManuallyRouted="false" />
         <AssociationConnector Association="FetchEntityModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="FetchEntityModel.PetFinderOrganization" Width="1.5" PointX="5.25" PointY="1.875" />
+        <AssociationConnector Association="FetchEntityModel.FK_PetFinderOrganization_Organization" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

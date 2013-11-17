@@ -25,6 +25,8 @@ namespace FetchEntities
         public string City { get; set; }
         public string State { get; set; }
         public string Zip { get; set; }
+        public Nullable<decimal> Longitude { get; set; }
+        public Nullable<decimal> Latitude { get; set; }
     
         public virtual ICollection<Organization> Organizations { get; set; }
     }

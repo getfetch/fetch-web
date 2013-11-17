@@ -6,7 +6,7 @@ set ldt=%ldt:~0,4%-%ldt:~4,2%-%ldt:~6,2% %ldt:~8,2%:%ldt:~10,2%:%ldt:~12,6%
 ECHO %ldt% : Begin installing the New Relic .net Agent >> "%RoleRoot%\nr.log" 2>&1
 
 :: Update with your license key
-SET LICENSE_KEY=c4b70c6c0f7eef39dfe13f2a23c9a08d22e17f89
+SET LICENSE_KEY=8ecaadedd9c37ba5e58285135775e9f165c1c77e
 :: Current version of the installer
 SET NR_INSTALLER_NAME=NewRelicAgent_x64_2.15.186.0.msi
 :: Path used for custom configuration and worker role environment varibles

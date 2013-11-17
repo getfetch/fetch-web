@@ -16,8 +16,8 @@ namespace FetchEntities
     {
         public Organization()
         {
-            this.OrganizationUsers = new HashSet<OrganizationUser>();
             this.Pets = new HashSet<Pet>();
+            this.PetFinderOrganizations = new HashSet<PetFinderOrganization>();
         }
     
         public int Id { get; set; }
@@ -30,7 +30,7 @@ namespace FetchEntities
     
         public virtual Address Address { get; set; }
         public virtual User User { get; set; }
-        public virtual ICollection<OrganizationUser> OrganizationUsers { get; set; }
         public virtual ICollection<Pet> Pets { get; set; }
+        public virtual ICollection<PetFinderOrganization> PetFinderOrganizations { get; set; }
     }
 }

@@ -9,7 +9,7 @@
   </SourceModelProvider>
   <TargetModelProvider>
     <ConnectionBasedModelProvider>
-      <ConnectionString>Data Source=uyenn2zupa.database.windows.net,1433;Initial Catalog=FetchWeb;Persist Security Info=True;User ID=fetchdbuser;Pooling=False;MultipleActiveResultSets=False;Application Name="Microsoft SQL Server Data Tools, Schema Compare"</ConnectionString>
+      <ConnectionString>Data Source=tcp:egunzc66fv.database.windows.net,1433;Initial Catalog=FetchTest;Persist Security Info=True;User ID=svc_fetchdb_tst;Pooling=False</ConnectionString>
     </ConnectionBasedModelProvider>
   </TargetModelProvider>
   <SchemaCompareSettingsService>

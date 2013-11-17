@@ -12,13 +12,12 @@ namespace FetchEntities
     using System;
     using System.Collections.Generic;
     
-    public partial class OrganizationUser
+    public partial class PetFinderOrganization
     {
         public int Id { get; set; }
         public int OrganizationId { get; set; }
-        public int UserId { get; set; }
+        public string PetFInderId { get; set; }
     
         public virtual Organization Organization { get; set; }
-        public virtual User User { get; set; }
     }
 }

@@ -17,7 +17,6 @@ namespace FetchEntities
         public User()
         {
             this.Organizations = new HashSet<Organization>();
-            this.OrganizationUsers = new HashSet<OrganizationUser>();
             this.UserPetFavorites = new HashSet<UserPetFavorite>();
         }
     
@@ -28,7 +27,6 @@ namespace FetchEntities
         public string Email { get; set; }
     
         public virtual ICollection<Organization> Organizations { get; set; }
-        public virtual ICollection<OrganizationUser> OrganizationUsers { get; set; }
         public virtual ICollection<UserPetFavorite> UserPetFavorites { get; set; }
     }
 }
