@@ -4,50 +4,34 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using FetchWeb.Models.api;
+using FetchDomain.Interfaces;
 
 namespace FetchWeb.Controllers.api
 {
-    public class Dog
-    {
-        public string Name { get; set; }
-        public string Breed { get; set; }
-        public string Description { get; set; }
-        public string Organization { get; set; }
-    }
-
     public class DogsController : ApiController
     {
         [HttpGet]
-        public IHttpActionResult Browse(int id)
+        public IHttpActionResult Browse(string Longitude, string Latitude, int Distance)
         {
-            int zip = id;
-
-            Dog Tess = new Dog
-            {
-                Name = "Tess",
-                Breed = "Beagles",
-                Description = "She be KAAAARAAAAZY",
-                Organization = "Beagle Rescue of America"
+            DogsBrowseModel model = new DogsBrowseModel() { 
+                Longitude = Longitude,
+                Latitude = Latitude,
+                Distance = Distance
             };
 
-            Dog Shannon = new Dog
-            {
-                Name = "Shannon",
-                Breed = "Pembroke Welsh Corgi/Boston Terrier",
-                Description = "Whose the boss? She is.",
-                Organization = "Bob's Breeder"
-            };
-
-            List<Dog> DogList = new List<Dog>();
-            DogList.Add(Tess);
-            DogList.Add(Shannon);
+            List<IDog> DogList = model.FindDogs();
 
             var response = new
             {
-                Zip = zip,
+                Latitude = model.Latitude,
+                Longitude = model.Longitude,
                 Dogs = DogList,
             };
             return Ok(response);
         }
     }
 }
+
+
+//http://localhost:2088/api/dogs/browse/?Longitude=-80.00&Latitude=40.40&Distance=100
