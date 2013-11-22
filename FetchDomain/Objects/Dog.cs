@@ -19,6 +19,12 @@ namespace FetchDomain.Objects
 
         public int OrganziationId { get; set; }
 
+        public int Id { get; set; }
+        
+        public string Sex { get; set; }
+        
+        public string Size { get; set; }
+
         public void Details()
         {
             throw new NotImplementedException();

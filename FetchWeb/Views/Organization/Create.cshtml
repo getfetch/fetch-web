@@ -1,5 +1,4 @@
-﻿@model FetchDomain.Objects.Organization
-
+﻿@model FetchWeb.Models.OrganizationCreateModel
 
 @using (Html.BeginForm()) 
 {
@@ -8,7 +7,7 @@
     <div class="form-horizontal">
         <h4>Organization</h4>
         <hr />
-        @Html.ValidationSummary(true)
+        @Html.ValidationSummary(false)
 
         <div class="form-group">
             @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
@@ -19,10 +18,42 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Address, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.AddrLine1, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Address)
-                @Html.ValidationMessageFor(model => model.Address)
+                @Html.EditorFor(model => model.AddrLine1)
+                @Html.ValidationMessageFor(model => model.AddrLine1)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AddrLine2, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AddrLine2)
+                @Html.ValidationMessageFor(model => model.AddrLine2)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.City, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.City)
+                @Html.ValidationMessageFor(model => model.City)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.State, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.State)
+                @Html.ValidationMessageFor(model => model.State)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Zip, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Zip)
+                @Html.ValidationMessageFor(model => model.Zip)
             </div>
         </div>
 
@@ -35,18 +66,42 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.EMail, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.EMail)
-                @Html.ValidationMessageFor(model => model.EMail)
+                @Html.EditorFor(model => model.Email)
+                @Html.ValidationMessageFor(model => model.Email)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.MainContact, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.FirstName, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.MainContact)
-                @Html.ValidationMessageFor(model => model.MainContact)
+                @Html.EditorFor(model => model.FirstName)
+                @Html.ValidationMessageFor(model => model.FirstName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LastName, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LastName)
+                @Html.ValidationMessageFor(model => model.LastName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ContactPhone, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ContactPhone)
+                @Html.ValidationMessageFor(model => model.ContactPhone)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ContactEmail, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ContactEmail)
+                @Html.ValidationMessageFor(model => model.ContactEmail)
             </div>
         </div>
 

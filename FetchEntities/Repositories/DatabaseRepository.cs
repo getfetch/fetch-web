@@ -11,6 +11,7 @@ namespace FetchEntities.Repositories
     {
         private static FetchEntities _db = new FetchEntities();
 
+        #region DogMethods
         public List<Pet> FindDogs(int radius, decimal min_latitude, decimal max_latitude, decimal min_longitude, decimal max_longitude)
         {
             return FindDogs(radius, min_latitude, max_latitude, min_longitude, max_longitude, "", "", "");
@@ -30,5 +31,37 @@ namespace FetchEntities.Repositories
             }
             return dogs;
         }
+        #endregion
+
+        #region OrganizationMethods
+        public void CreateOrganziation(string Name, string Phone, string Email, string AddrLine1, string AddrLine2, string City, string State, string Zip, string FirstName, string LastName, string ContactEmail, string ContactPhone)
+        {
+            Organization org = new Organization()
+            {
+                Name = Name,
+                Phone = Phone,
+                Email = Email,
+                Type = "shelter",
+            };
+            org.Address = new Address()
+            { 
+                Line1 = AddrLine1,
+                Line2 = AddrLine2,
+                City = City,
+                State = State,
+                Zip = Zip,
+            };
+
+            org.User = new User() { 
+                FirstName = FirstName,
+                LastName = LastName,
+                Phone = ContactPhone,
+                Email = ContactEmail,
+            };
+
+            _db.Organizations.Add(org);
+            _db.SaveChanges();
+        }
+        #endregion
     }
 }

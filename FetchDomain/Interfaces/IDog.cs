@@ -8,10 +8,13 @@ namespace FetchDomain.Interfaces
 {
     public interface IDog
     {
+        int Id { get; set; }
         String Name { get; set; }
         String Breed { get; set; }
         String Description { get; set; }
         String Organization { get; set; }
+        String Sex { get; set; }
+        String Size { get; set; }
         int OrganziationId { get; set; }
 
 

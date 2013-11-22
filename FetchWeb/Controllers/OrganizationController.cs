@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using FetchWeb.Models;
+
+//TODO: Remove dependency
 using FetchDomain.Interfaces;
 using FetchDomain.Objects;
 
@@ -23,9 +26,9 @@ namespace FetchWeb.Controllers
         {
             try
             {
-                IOrganization org = DependencyResolver.Current.GetService<IOrganization>();
-                org.Details(id);
-                return View("Details", org);
+                //IOrganization org = DependencyResolver.Current.GetService<IOrganization>();
+                //org.Details(id);
+                return View("Details");
             }
             catch (Exception ex)
             {
@@ -43,15 +46,16 @@ namespace FetchWeb.Controllers
         //
         // POST: /Organization/Create
         [HttpPost]
-        public ActionResult Create(Organization org)
+        public ActionResult Create(OrganizationCreateModel org)
         {
             try
             {
                 org.Create();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
-            catch
+            catch(Exception ex)
             {
+                ModelState.AddModelError("Error", ex.Message);
                 return View();
             }
         }
@@ -62,10 +66,10 @@ namespace FetchWeb.Controllers
         {
             try
             {
-                IOrganization org = new Organization();
+                //IOrganization org = new Organization();
 
-                org.Details(id);
-                return View("Edit", org);
+                //org.Details(id);
+                return View("Edit");
             }
             catch (Exception ex)
             {

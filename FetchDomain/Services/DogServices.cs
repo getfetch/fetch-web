@@ -40,6 +40,9 @@ namespace FetchDomain.Services
                     Breed = pet.Breed,
                     Description = pet.Description,
                     Organization = pet.Organization.Name,
+                    Id = pet.Id,
+                    Sex = pet.Sex,
+                    Size = pet.Size,
                 };
 
                 dogs.Add(newDog);
