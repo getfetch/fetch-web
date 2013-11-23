@@ -24,6 +24,10 @@ namespace FetchDomain.Objects
         public string Sex { get; set; }
         
         public string Size { get; set; }
+        public string Age { get; set; }
+
+        public Boolean AtRisk { get; set; }
+        public String Status { get; set; }
 
         public void Details()
         {

@@ -194,7 +194,9 @@
     <Compile Include="Models\api\DogFilterOptions.cs" />
     <Compile Include="Models\api\DogsBrowseModel.cs" />
     <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\DogBaseModel.cs" />
     <Compile Include="Models\DogCreateModel.cs" />
+    <Compile Include="Models\DogEditModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\OrganizationCreateModel.cs" />
     <Compile Include="Objects\UnityDependencyResolver.cs" />
@@ -262,6 +264,7 @@
     <Content Include="Views\Organization\Delete.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\User.cshtml" />
     <Content Include="Views\Dogs\Create.cshtml" />
+    <Content Include="Views\Dogs\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

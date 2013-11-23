@@ -104,6 +104,7 @@
           <Property Name="Age" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="Sex" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="Size" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="PetFinderOrganization">
           <Key>
@@ -423,6 +424,7 @@
           <Property Name="Age" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Sex" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="Size" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -701,6 +703,7 @@
           <EntitySetMapping Name="Pets">
             <EntityTypeMapping TypeName="FetchEntityModel.Pet">
               <MappingFragment StoreEntitySet="Pet">
+                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Size" ColumnName="Size" />
                 <ScalarProperty Name="Sex" ColumnName="Sex" />
                 <ScalarProperty Name="Age" ColumnName="Age" />

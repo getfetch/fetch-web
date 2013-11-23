@@ -13,12 +13,33 @@ namespace FetchDomain.Services
 {
     public class DogServices : BaseService
     {
+        // TODO : Remove Dependency
+        private IRepository _repo = new DatabaseRepository();
 
         public void CreateDog(string Name, string Breed, string Description, string Type, bool AtRisk, string Age, string Sex, string Size, int OrganizationId)
         {
-            // TODO: Remove dependency
-            DatabaseRepository repo = new DatabaseRepository();
-            repo.CreateDog(Name, Breed, Description, Type, AtRisk, Age, Sex, Size, OrganizationId);
+            _repo.CreateDog(Name, Breed, Description, Type, AtRisk, Age, Sex, Size, OrganizationId);
+        }
+
+        public IDog FindDog(int id)
+        {
+            Pet pet = _repo.FindDog(id);
+            // TODO: remove dependency
+            IDog newDog = new Dog()
+            {
+                Name = pet.Name,
+                Breed = pet.Breed,
+                Description = pet.Description,
+                Organization = pet.Organization.Name,
+                Id = pet.Id,
+                Sex = pet.Sex,
+                Size = pet.Size,
+                Age = pet.Age,
+                AtRisk = pet.AtRisk,
+                Status = pet.Status,
+            };
+
+            return newDog;
         }
 
         public List<IDog> FindDogs(int radius, decimal latitude, decimal longitude)
@@ -35,10 +56,7 @@ namespace FetchDomain.Services
             Decimal min_lon = longitude - lon_range;
             Decimal max_lon = longitude + lon_range;
 
-            // TODO: Remove dependency
-            IRepository repo = new DatabaseRepository();
-
-            List<Pet> pets = repo.FindDogs(radius, min_lat, max_lat, min_lon, max_lon);
+            List<Pet> pets = _repo.FindDogs(radius, min_lat, max_lat, min_lon, max_lon);
             List<IDog> dogs = new List<IDog>();
             foreach (Pet pet in pets)
             {
@@ -57,5 +75,11 @@ namespace FetchDomain.Services
             }
             return dogs;
         }
+
+        public void UpdateDog(int id, string name, string breed, string description, bool atRisk, string age, string sex, string size, string status)
+        {
+            _repo.UpdateDog(id, name, breed, description, atRisk, age, sex, size, status);
+        }
+
     }
 }

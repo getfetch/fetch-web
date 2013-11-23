@@ -29,6 +29,7 @@ namespace FetchEntities
         public string Age { get; set; }
         public string Sex { get; set; }
         public string Size { get; set; }
+        public string Status { get; set; }
     
         public virtual Organization Organization { get; set; }
         public virtual ICollection<UserPetFavorite> UserPetFavorites { get; set; }

@@ -15,7 +15,10 @@ namespace FetchDomain.Interfaces
         String Organization { get; set; }
         String Sex { get; set; }
         String Size { get; set; }
+        String Age { get; set; }
+        Boolean AtRisk { get; set; }
         int OrganziationId { get; set; }
+        string Status { get; set; }
 
 
         void Details();

@@ -50,18 +50,19 @@ namespace FetchWeb.Controllers
         // GET: /Dogs/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            DogEditModel model = new DogEditModel();
+            model.Load(id);
+            return View("Edit", model);
         }
 
         //
         // POST: /Dogs/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(DogEditModel model)
         {
             try
             {
-                // TODO: Add update logic here
-
+                model.Update();
                 return RedirectToAction("Index");
             }
             catch

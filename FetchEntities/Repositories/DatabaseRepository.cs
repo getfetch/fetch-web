@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace FetchEntities.Repositories
 {
@@ -30,6 +31,13 @@ namespace FetchEntities.Repositories
             _db.Pets.Add(pet);
             _db.SaveChanges();
         }
+
+        public Pet FindDog(int id)
+        {
+            return _db.Pets.Find(id);
+        }
+
+
         public List<Pet> FindDogs(int radius, decimal min_latitude, decimal max_latitude, decimal min_longitude, decimal max_longitude)
         {
             return FindDogs(radius, min_latitude, max_latitude, min_longitude, max_longitude, "", "", "");
@@ -49,6 +57,26 @@ namespace FetchEntities.Repositories
             }
             return dogs;
         }
+
+        public void UpdateDog(int id, string name, string breed, string description, bool atRisk, string age, string sex, string size, string status)
+        {
+            Pet pet = FindDog(id);
+            if(pet != null)
+            {
+                pet.Name = name;
+                pet.Breed = breed;
+                pet.Description = description;
+                pet.AtRisk = atRisk;
+                pet.Age = age;
+                pet.Sex = sex;
+                pet.Size = size;
+                pet.Status = status;
+
+                _db.Entry(pet).State = System.Data.Entity.EntityState.Modified;
+                _db.SaveChanges();
+            }
+        }
+
         #endregion
 
         #region OrganizationMethods
