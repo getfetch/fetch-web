@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using FetchWeb.Models;
 
 namespace FetchWeb.Controllers
 {
@@ -26,19 +27,18 @@ namespace FetchWeb.Controllers
         // GET: /Dogs/Create
         public ActionResult Create()
         {
-            return View();
+            return View("Create", new DogCreateModel());
         }
 
         //
         // POST: /Dogs/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(DogCreateModel dog)
         {
             try
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                dog.Create();
+                return RedirectToAction("Index", "Home");
             }
             catch
             {

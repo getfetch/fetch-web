@@ -13,6 +13,14 @@ namespace FetchDomain.Services
 {
     public class DogServices : BaseService
     {
+
+        public void CreateDog(string Name, string Breed, string Description, string Type, bool AtRisk, string Age, string Sex, string Size, int OrganizationId)
+        {
+            // TODO: Remove dependency
+            DatabaseRepository repo = new DatabaseRepository();
+            repo.CreateDog(Name, Breed, Description, Type, AtRisk, Age, Sex, Size, OrganizationId);
+        }
+
         public List<IDog> FindDogs(int radius, decimal latitude, decimal longitude)
         {
             return FindDogs(radius, latitude, longitude, "", "", "");

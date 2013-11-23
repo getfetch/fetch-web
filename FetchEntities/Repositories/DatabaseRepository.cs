@@ -12,6 +12,24 @@ namespace FetchEntities.Repositories
         private static FetchEntities _db = new FetchEntities();
 
         #region DogMethods
+        public void CreateDog(string Name, string Breed, string Description, string Type, bool AtRisk, string Age, string Sex, string Size, int OrganizationId)
+        {
+            Pet pet = new Pet() { 
+                Type = Type,
+                Name = Name,
+                Description = Description,
+                AtRisk = AtRisk,
+                Age = Age,
+                Sex = Sex,
+                Size = Size,
+                Breed = Breed,
+                // TODO: Remove this
+                OrganizationId = OrganizationId,
+            };
+
+            _db.Pets.Add(pet);
+            _db.SaveChanges();
+        }
         public List<Pet> FindDogs(int radius, decimal min_latitude, decimal max_latitude, decimal min_longitude, decimal max_longitude)
         {
             return FindDogs(radius, min_latitude, max_latitude, min_longitude, max_longitude, "", "", "");
