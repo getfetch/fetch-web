@@ -14,7 +14,7 @@ namespace FetchDomain.Tests.Services
             DogServices services = new DogServices();
             decimal lon = Decimal.Parse("-80.00");
             decimal lat = Decimal.Parse("40.40");
-            var dogs = services.FindDogs(100, lat, lon);
+            var dogs = services.FindDogs(100, lat, lon, "available");
 
             Assert.AreNotEqual(null, dogs);
             Assert.AreNotEqual(0, dogs.Count);

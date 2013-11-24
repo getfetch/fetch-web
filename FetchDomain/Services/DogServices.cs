@@ -42,11 +42,11 @@ namespace FetchDomain.Services
             return newDog;
         }
 
-        public List<IDog> FindDogs(int radius, decimal latitude, decimal longitude)
+        public List<IDog> FindDogs(int radius, decimal latitude, decimal longitude, string status)
         {
-            return FindDogs(radius, latitude, longitude, "", "", "");
+            return FindDogs(radius, latitude, longitude, status, "", "", "");
         }
-        public List<IDog> FindDogs(int radius, decimal latitude, decimal longitude, string age = "", string sex = "", string size = "")
+        public List<IDog> FindDogs(int radius, decimal latitude, decimal longitude, string status, string age = "", string sex = "", string size = "")
         {
             // Determine a lat/long range
             Decimal lat_range = radius / (Decimal)69.172;
@@ -56,7 +56,7 @@ namespace FetchDomain.Services
             Decimal min_lon = longitude - lon_range;
             Decimal max_lon = longitude + lon_range;
 
-            List<Pet> pets = _repo.FindDogs(radius, min_lat, max_lat, min_lon, max_lon);
+            List<Pet> pets = _repo.FindDogs(radius, min_lat, max_lat, min_lon, max_lon, status);
             List<IDog> dogs = new List<IDog>();
             foreach (Pet pet in pets)
             {

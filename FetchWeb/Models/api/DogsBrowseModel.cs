@@ -27,8 +27,8 @@ namespace FetchWeb.Models.api
             // TODO: try to make the FilterOptions an object of type DogFilterOptions
             //DogFilterOptions responseObj = Json.Deserialize<DogFilterOptions>(FilterOptions);
 
-
-            List<IDog> dogs = _services.FindDogs(Distance, Decimal.Parse(Latitude), Decimal.Parse(Longitude));
+            string status = "available";
+            List<IDog> dogs = _services.FindDogs(Distance, Decimal.Parse(Latitude), Decimal.Parse(Longitude), status);
             return dogs;
         }
     }

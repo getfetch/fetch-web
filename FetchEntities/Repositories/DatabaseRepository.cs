@@ -38,21 +38,25 @@ namespace FetchEntities.Repositories
         }
 
 
-        public List<Pet> FindDogs(int radius, decimal min_latitude, decimal max_latitude, decimal min_longitude, decimal max_longitude)
+        public List<Pet> FindDogs(int radius, decimal min_latitude, decimal max_latitude, decimal min_longitude, decimal max_longitude, string status)
         {
-            return FindDogs(radius, min_latitude, max_latitude, min_longitude, max_longitude, "", "", "");
+            return FindDogs(radius, min_latitude, max_latitude, min_longitude, max_longitude, status, "", "", "");
         }
 
-        public List<Pet> FindDogs(int radius, decimal min_latitude, decimal max_latitude, decimal min_longitude, decimal max_longitude, string age = "", string sex = "", string size = "")
+        public List<Pet> FindDogs(int radius, decimal min_latitude, decimal max_latitude, decimal min_longitude, decimal max_longitude, string status, string age = "", string sex = "", string size = "")
         {
             List<Pet> dogs = new List<Pet>();
             var orgs = _db.Organizations.Where(m => m.Address.Latitude >= min_latitude && m.Address.Latitude <= max_latitude && m.Address.Longitude >= min_longitude && m.Address.Longitude <= max_longitude).Select(m => m);
+            bool filterByStatus = (status != null && status != "") ? true : false;
 
             foreach (var org in orgs)
             {
                 foreach (var dog in org.Pets.Where(m => m.Type == "dog"))
                 {
-                    dogs.Add(dog);
+                    if(!filterByStatus || dog.Status.ToLower() == status.ToLower())
+                    {
+                        dogs.Add(dog);
+                    }
                 }
             }
             return dogs;
