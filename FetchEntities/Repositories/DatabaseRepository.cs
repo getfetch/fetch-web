@@ -62,6 +62,22 @@ namespace FetchEntities.Repositories
             return dogs;
         }
 
+        public Pet GetFeatured()
+        {
+            Random rnd = new Random();
+            int? start = _db.Pets.OrderBy(m => m.Id).Select(m => m.Id).FirstOrDefault() as int?;
+            int? end = _db.Pets.OrderByDescending(m => m.Id).Select(m => m.Id).FirstOrDefault() as int?;
+
+            Pet featured = null;
+            int randId;
+            while(featured == null)
+            {
+                randId = rnd.Next(start.Value, end.Value);
+                featured = _db.Pets.Find(randId);
+            }
+            return featured;
+        }
+
         public void UpdateDog(int id, string name, string breed, string description, bool atRisk, string age, string sex, string size, string status)
         {
             Pet pet = FindDog(id);
@@ -111,6 +127,27 @@ namespace FetchEntities.Repositories
 
             _db.Organizations.Add(org);
             _db.SaveChanges();
+        }
+        #endregion
+
+        #region UserMethods
+        public void SavePetToUserFavorites(string userToken, int petId)
+        {
+            // TODO: find user id from userToken
+            int userId = 1;
+
+            // Add only if it's not already added
+            var alreadySaved = _db.UserPetFavorites.Where(m => m.UserId == userId && m.PetId == petId).FirstOrDefault();
+            if (alreadySaved == null)
+            {
+                UserPetFavorite fav = new UserPetFavorite()
+                {
+                    PetId = petId,
+                    UserId = userId,
+                };
+                _db.UserPetFavorites.Add(fav);
+                _db.SaveChanges();
+            }
         }
         #endregion
     }

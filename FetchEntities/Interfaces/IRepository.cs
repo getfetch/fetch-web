@@ -12,6 +12,8 @@ namespace FetchEntities.Interfaces
         Pet FindDog(int id);
         List<Pet> FindDogs(int radius, decimal min_latitude, decimal max_latitude, decimal min_longitude, decimal max_longitude, string status);
         List<Pet> FindDogs(int radius, decimal min_latitude, decimal max_latitude, decimal min_longitude, decimal max_longitude, string status, string age = "", string sex = "", string size = "");
+        Pet GetFeatured();
+        void SavePetToUserFavorites(string userToken, int petId);
         void UpdateDog(int id, string name, string breed, string description, bool atRisk, string age, string sex, string size, string status);
     }
 }

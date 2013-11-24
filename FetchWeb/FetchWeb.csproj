@@ -183,6 +183,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\api\DogsController.cs" />
+    <Compile Include="Models\api\UserAddToFavoritesModel.cs" />
+    <Compile Include="Controllers\api\UserController.cs" />
     <Compile Include="Controllers\DogsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrganizationController.cs" />
@@ -197,6 +199,7 @@
     <Compile Include="Models\DogBaseModel.cs" />
     <Compile Include="Models\DogCreateModel.cs" />
     <Compile Include="Models\DogEditModel.cs" />
+    <Compile Include="Models\api\DogsFeaturedModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\OrganizationCreateModel.cs" />
     <Compile Include="Objects\UnityDependencyResolver.cs" />

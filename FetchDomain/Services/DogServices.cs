@@ -69,11 +69,32 @@ namespace FetchDomain.Services
                     Id = pet.Id,
                     Sex = pet.Sex,
                     Size = pet.Size,
+                    Age = pet.Age,
+                    AtRisk = pet.AtRisk,
+                    Status = pet.Status,
                 };
 
                 dogs.Add(newDog);
             }
             return dogs;
+        }
+
+        public IDog GetFeatured()
+        {
+            Pet pet = _repo.GetFeatured();
+            IDog featured = new Dog() {
+                    Name = pet.Name,
+                    Breed = pet.Breed,
+                    Description = pet.Description,
+                    Organization = pet.Organization.Name,
+                    Id = pet.Id,
+                    Sex = pet.Sex,
+                    Size = pet.Size,
+                    Age = pet.Age,
+                    AtRisk = pet.AtRisk,
+                    Status = pet.Status,
+            };
+            return featured;
         }
 
         public void UpdateDog(int id, string name, string breed, string description, bool atRisk, string age, string sex, string size, string status)

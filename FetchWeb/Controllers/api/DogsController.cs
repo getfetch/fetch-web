@@ -30,6 +30,19 @@ namespace FetchWeb.Controllers.api
             };
             return Ok(response);
         }
+
+
+        [HttpGet]
+        public IHttpActionResult GetFeatured()
+        {
+            DogsFeaturedModel model = new DogsFeaturedModel();
+            IDog featured = model.GetFeatured();
+            var response = new { 
+                Dog = featured,
+            };
+
+            return Ok(response);
+        }
     }
 }
 

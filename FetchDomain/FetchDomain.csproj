@@ -61,6 +61,7 @@
     <Compile Include="Services\BaseService.cs" />
     <Compile Include="Services\DogServices.cs" />
     <Compile Include="Services\OrganizationServices.cs" />
+    <Compile Include="Services\UserServices.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FetchEntities\FetchEntities.csproj">
